@@ -34,7 +34,7 @@
 import CreativeEngine from '@cesdk/engine';
 import {
   PSDParser,
-  addGoogleFontsAssetLibrary,
+  addGfontsAssetLibrary,
   createWebEncodeBufferToPNG
 } from '@imgly/psd-importer';
 import type { LogMessage } from '@imgly/psd-importer';
@@ -105,7 +105,7 @@ export async function importPsdFile(
     });
 
     // Add Google Fonts support
-    await addGoogleFontsAssetLibrary(engine);
+    await addGfontsAssetLibrary(engine);
 
     // Convert Blob to ArrayBuffer
     const blobBuffer = await file.arrayBuffer();
