@@ -22,36 +22,36 @@ export function CreativeEditor({
   return (
     <div className={classes.fullscreenWrapper}>
       <div className={classes.cesdkContainer}>
-      <CreativeEditorComponent
-        config={editorConfig}
-        init={async (cesdk: CreativeEditorSDK) => {
-          // Debug access (remove in production)
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (window as any).cesdk = cesdk;
+        <CreativeEditorComponent
+          config={editorConfig}
+          init={async (cesdk: CreativeEditorSDK) => {
+            // Debug access (remove in production)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (window as any).cesdk = cesdk;
 
-          // Initialize the editor with PSD template import configuration
-          await initPsdTemplateImportEditor(cesdk);
+            // Initialize the editor with PSD template import configuration
+            await initPsdTemplateImportEditor(cesdk);
 
-          // Add back button to navigate back
-          cesdk.ui.insertOrderComponent(
-            { in: 'ly.img.navigation.bar', position: 'start' },
-            { id: 'ly.img.close.navigationBar', onClick: closeEditor }
-          );
+            // Add back button to navigate back
+            cesdk.ui.insertOrderComponent(
+              { in: 'ly.img.navigation.bar', position: 'start' },
+              { id: 'ly.img.close.navigationBar', onClick: closeEditor }
+            );
 
-          // Load the scene from the archive URL
-          await cesdk.loadFromArchiveURL(sceneArchiveUrl);
+            // Load the scene from the archive URL
+            await cesdk.loadFromArchiveURL(sceneArchiveUrl);
 
-          // Zoom auto-fit to page
-          cesdk.actions.run('zoom.toPage', { autoFit: true });
-        }}
-        onError={(error) => {
-          // eslint-disable-next-line no-console
-          console.error('Failed to initialize CE.SDK:', error);
-          closeEditor();
-        }}
-        width="100%"
-        height="100%"
-      />
+            // Zoom auto-fit to page
+            cesdk.actions.run('zoom.toPage', { autoFit: true });
+          }}
+          onError={(error) => {
+            // eslint-disable-next-line no-console
+            console.error('Failed to initialize CE.SDK:', error);
+            closeEditor();
+          }}
+          width="100%"
+          height="100%"
+        />
       </div>
     </div>
   );

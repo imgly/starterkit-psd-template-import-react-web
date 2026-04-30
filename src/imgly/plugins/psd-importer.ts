@@ -34,7 +34,7 @@
 import CreativeEngine from '@cesdk/engine';
 import {
   PSDParser,
-  addGoogleFontsAssetLibrary,
+  addGfontsAssetLibrary,
   createWebEncodeBufferToPNG
 } from '@imgly/psd-importer';
 import type { LogMessage } from '@imgly/psd-importer';
@@ -43,6 +43,8 @@ import type { LogMessage } from '@imgly/psd-importer';
  * Configuration options for PSD import.
  */
 export interface PsdImportConfig {
+  /** CE.SDK license key */
+  license?: string;
   /** Base URL for CE.SDK assets (for local development) */
   baseURL?: string;
   /** Target width for preview image (default: 1000) */
@@ -94,18 +96,24 @@ export async function importPsdFile(
   fileName: string,
   config: PsdImportConfig = {}
 ): Promise<PsdImportResult> {
-  const { baseURL, previewWidth = 1000, previewHeight = 1000 } = config;
+  const {
+    license,
+    baseURL,
+    previewWidth = 1000,
+    previewHeight = 1000
+  } = config;
 
   let engine: CreativeEngine | null = null;
 
   try {
     // Initialize headless engine for processing
     engine = await CreativeEngine.init({
+      ...(license && { license }),
       ...(baseURL && { baseURL })
     });
 
     // Add Google Fonts support
-    await addGoogleFontsAssetLibrary(engine);
+    await addGfontsAssetLibrary(engine);
 
     // Convert Blob to ArrayBuffer
     const blobBuffer = await file.arrayBuffer();
