@@ -90,6 +90,7 @@ export function FileProcessingContextProvider({
 
         // Import PSD file using the functional API
         const importResult = await importPsdFile(blob, fileName, {
+          license: editorConfig.license,
           baseURL: editorConfig.baseURL
         });
 
