@@ -17,7 +17,6 @@
  *
  * // Import a PSD file
  * const result = await importPsdFile(psdBlob, 'design.psd', {
- *   baseURL: '/assets/'
  * });
  *
  * // Load into editor
@@ -85,7 +84,6 @@ export interface PsdImportResult {
  * @example
  * ```typescript
  * const result = await importPsdFile(psdBlob, 'design.psd', {
- *   baseURL: '/assets/'
  * });
  * console.log('Preview:', result.imageUrl);
  * console.log('Warnings:', result.messages.filter(m => m.type === 'warning'));
