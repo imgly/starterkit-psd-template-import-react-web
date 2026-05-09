@@ -1,9 +1,29 @@
+import { defineConfig, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+/**
+ * Plugin to handle .archive files with correct MIME type.
+ * CE.SDK scene archives are ZIP files that need application/zip Content-Type.
+ */
+function archiveMimePlugin(): Plugin {
+  return {
+    name: 'archive-mime',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (req.url?.endsWith('.archive')) {
+          res.setHeader('Content-Type', 'application/zip');
+        }
+        next();
+      });
+    }
+  };
+}
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), archiveMimePlugin()],
   server: {
     port: 5173
+  },
+  resolve: {
+    dedupe: ['react', 'react-dom']
   }
 });
