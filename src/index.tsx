@@ -1,45 +1,32 @@
 /**
- * CE.SDK PSD Template Import Starterkit - React Entry Point
+ * PSD Template Import Starterkit - Entry Point
  *
- * Import and edit Adobe Photoshop (PSD) templates with professional
- * editing features powered by CE.SDK.
- *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * This is the main entry point for the application.
+ * It configures the CE.SDK editor and renders the App component.
  */
-
-import type { Configuration } from '@cesdk/cesdk-js';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-
+import type { Configuration } from '@cesdk/cesdk-js';
 import { App } from './app/App';
 
-// ============================================================================
-// Configuration
-// ============================================================================
+/**
+ * CE.SDK Editor Configuration
+ *
+ * This configuration is passed to the CreativeEditor component
+ * when opening the editor to edit imported PSD files.
+ *
+ * Note: Role, theme, and typeface libraries are configured via
+ * runtime APIs in the AdvancedEditorConfig plugin.
+ */
+export const editorConfig: Configuration = {
+  userId: 'starterkit-psd-template-import-user',
 
-const config: Configuration = {
-  // Unique user identifier for analytics (customize for your app)
-  userId: 'starterkit-psd-template-import-user'
+  // Local assets for development
 
-  // Local assets (uncomment and set path for self-hosted assets)
-  // baseURL: `/assets/`,
-
-  // License key (required for production)
-  // license: 'YOUR_LICENSE_KEY',
 };
 
-// ============================================================================
-// Initialize React Application
-// ============================================================================
-
-const container = document.getElementById('root');
-if (!container) {
-  throw new Error('Root container not found');
-}
-
-const root = createRoot(container);
-root.render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App editorConfig={config} />
+    <App editorConfig={editorConfig} />
   </StrictMode>
 );
