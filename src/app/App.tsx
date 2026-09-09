@@ -6,6 +6,7 @@ import './app.css';
 import { FileProcessingContextProvider } from './FileProcessingContext/FileProcessingContext';
 import { FileProcessing } from './FileProcessing/FileProcessing';
 
+
 interface AppProps {
   editorConfig: Configuration;
 }

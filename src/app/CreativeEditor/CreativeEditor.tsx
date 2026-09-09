@@ -8,6 +8,7 @@ import CreativeEditorComponent from '@cesdk/cesdk-js/react';
 import { initPsdTemplateImportEditor } from '../../imgly';
 import classes from './CreativeEditor.module.css';
 
+
 interface CreativeEditorProps {
   sceneArchiveUrl: string;
   editorConfig: Configuration;
