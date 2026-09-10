@@ -8,7 +8,6 @@ import CreativeEditorComponent from '@cesdk/cesdk-js/react';
 import { initPsdTemplateImportEditor } from '../../imgly';
 import classes from './CreativeEditor.module.css';
 
-
 interface CreativeEditorProps {
   sceneArchiveUrl: string;
   editorConfig: Configuration;
@@ -40,7 +39,7 @@ export function CreativeEditor({
             );
 
             // Load the scene from the archive URL
-            await cesdk.load(sceneArchiveUrl);
+            await cesdk.loadFromArchiveURL(sceneArchiveUrl);
 
             // Zoom auto-fit to page
             cesdk.actions.run('zoom.toPage', { autoFit: true });
