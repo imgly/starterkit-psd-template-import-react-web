@@ -20,14 +20,14 @@
  * });
  *
  * // Load into editor
- * await cesdk.loadFromArchiveURL(result.sceneArchiveUrl);
+ * await cesdk.load(result.sceneArchiveUrl);
  *
  * // Clean up when done (at app level)
  * URL.revokeObjectURL(result.imageUrl);
  * URL.revokeObjectURL(result.sceneArchiveUrl);
  * ```
  *
- * @see https://img.ly/docs/cesdk/js/features/import-psd/
+ * @see https://img.ly/docs/cesdk/js/open-the-editor/import-design/from-photoshop-cca6bb/
  */
 
 import CreativeEngine from '@cesdk/engine';
