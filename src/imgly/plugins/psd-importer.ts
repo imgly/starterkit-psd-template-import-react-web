@@ -36,7 +36,18 @@ import {
   addGfontsAssetLibrary,
   createWebEncodeBufferToPNG
 } from '@imgly/psd-importer';
-import type { LogMessage } from '@imgly/psd-importer';
+
+/**
+ * A message the parser reports about content it could not import faithfully.
+ */
+export interface ImportMessage {
+  /** Stable identifier of the message */
+  code: string;
+  /** Severity of the message */
+  type: 'error' | 'warning' | 'info';
+  /** Human-readable text */
+  message: string;
+}
 
 /**
  * Configuration options for PSD import.
@@ -61,7 +72,7 @@ export interface PsdImportResult {
   /** Object URL for the scene archive */
   sceneArchiveUrl: string;
   /** Messages from the PSD parser (warnings, errors) */
-  messages: LogMessage[];
+  messages: ImportMessage[];
   /** Original file name */
   fileName: string;
 }
@@ -135,7 +146,8 @@ export async function importPsdFile(
     }
 
     // Export preview image
-    const imageBlob = await engine.block.export(firstPage, 'image/png', {
+    const imageBlob = await engine.block.export(firstPage, {
+      mimeType: 'image/png',
       targetWidth: previewWidth,
       targetHeight: previewHeight
     });
