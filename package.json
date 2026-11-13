@@ -10,8 +10,8 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.86.0",
-    "@cesdk/engine": "^1.86.0",
+    "@cesdk/cesdk-js": "^1.86.1",
+    "@cesdk/engine": "^1.86.1",
     "@fontsource/ibm-plex-sans": "^5.2.8",
     "@imgly/psd-importer": "^0.5.1",
     "classnames": "^2.3.2",
