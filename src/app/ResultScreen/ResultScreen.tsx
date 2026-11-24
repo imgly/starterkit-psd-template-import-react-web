@@ -85,7 +85,7 @@ export function ResultScreen() {
             {/* Column 2: Imported Result */}
             <div>
               <h5 className={classes.heading}>Imported Result</h5>
-              <span className={classes.previewLabel}>PNG Preview</span>
+              <span className={classes.previewLabel}>Preview</span>
             </div>
             <div className={classes.preview}>
               <img
